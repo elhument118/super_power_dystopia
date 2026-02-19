@@ -1,14 +1,39 @@
-<div id="character-container">
-  </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTCG Dystopia - Profile System</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <h1>PTCG Dystopia: 캐릭터 도감</h1>
+    </header>
 
-<template id="card-template">
-  <div class="character-card">
-    <div class="type-badge"></div>
-    <h2 class="name"></h2>
-    <p class="gender"></p>
-    <p class="description"></p>
-    <div class="relationship">
-      <strong>호감: </strong><span class="likes"></span>
-    </div>
-  </div>
-</template>
+    <main id="app">
+        <div id="character-list" class="container">
+            </div>
+    </main>
+
+    <script type="module">
+        import characterData from './js/data.js';
+        
+        const listContainer = document.getElementById('character-list');
+
+        characterData.forEach(char => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.style.setProperty('--type-color', char.color);
+            
+            card.innerHTML = `
+                <div class="type-badge">${char.type}</div>
+                <h2>${char.name} ${char.gender}</h2>
+                <p class="desc">${char.description}</p>
+                <div class="footer">호감 대상: ${char.likes}</div>
+            `;
+            listContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
