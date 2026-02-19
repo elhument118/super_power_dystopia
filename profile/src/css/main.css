@@ -1,0 +1,14 @@
+.character-card {
+  border: 2px solid #333;
+  background-color: #1a1a1a; /* 다크 모드 */
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+/* 타입별로 동적 부여될 테두리 색상 */
+.character-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--type-color);
+}
