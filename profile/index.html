@@ -11,29 +11,73 @@
         <h1>PTCG Dystopia: 캐릭터 도감</h1>
     </header>
 
+    <!-- 필터 버튼 추가 -->
+    <section class="filter-container">
+        <button class="filter-btn" data-type="ALL">ALL</button>
+        <button class="filter-btn" data-type="GRASS">GRASS</button>
+        <button class="filter-btn" data-type="FIRE">FIRE</button>
+        <button class="filter-btn" data-type="WATER">WATER</button>
+        <button class="filter-btn" data-type="ELECTRIC">ELECTRIC</button>
+        <button class="filter-btn" data-type="LIGHT">LIGHT</button>
+        <button class="filter-btn" data-type="DARK">DARK</button>
+        <button class="filter-btn" data-type="EARTH">EARTH</button>
+        <button class="filter-btn" data-type="METAL">METAL</button>
+        <button class="filter-btn" data-type="DRAGON">DRAGON</button>
+        <button class="filter-btn" data-type="WIND">WIND</button>
+    </section>
+
     <main id="app">
-        <div id="character-list" class="container">
-            </div>
+        <div id="character-list" class="container"></div>
     </main>
 
     <script type="module">
         import characterData from './js/data.js';
         
         const listContainer = document.getElementById('character-list');
+        const filterButtons = document.querySelectorAll('.filter-btn');
 
-        characterData.forEach(char => {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.style.setProperty('--type-color', char.color);
-            
-            card.innerHTML = `
-                <div class="type-badge">${char.type}</div>
-                <h2>${char.name} ${char.gender}</h2>
-                <p class="desc">${char.description}</p>
-                <div class="footer">호감 대상: ${char.likes}</div>
-            `;
-            listContainer.appendChild(card);
+        function renderCharacters(filter = "ALL") {
+            listContainer.innerHTML = "";
+
+            const filtered = filter === "ALL"
+                ? characterData
+                : characterData.filter(char => char.type === filter);
+
+            filtered.forEach(char => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.setProperty('--type-color', char.color);
+
+                card.innerHTML = `
+                    <div class="type-badge">${char.type}</div>
+                    <h2>${char.name} ${char.gender}</h2>
+                    <p class="desc hidden">${char.description}</p>
+                    <div class="footer hidden">호감 대상: ${char.likes}</div>
+                `;
+
+                // 카드 클릭 시 상세 토글
+                card.addEventListener("click", () => {
+                    card.querySelectorAll(".hidden").forEach(el => {
+                        el.classList.toggle("hidden");
+                    });
+                });
+
+                listContainer.appendChild(card);
+            });
+        }
+
+        // 필터 버튼 이벤트
+        filterButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                renderCharacters(btn.dataset.type);
+            });
         });
+
+        // 초기 렌더
+        renderCharacters();
     </script>
 </body>
 </html>
