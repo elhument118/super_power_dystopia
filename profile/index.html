@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PTCG Dystopia - Profile System</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="src/css/main.css">
 </head>
 <body>
     <header>
-        <h1>PTCG Dystopia: 캐릭터 도감</h1>
+        <h1 class="title">PTCG Dystopia: 캐릭터 도감</h1>
     </header>
 
-    <!-- 필터 버튼 추가 -->
-        <section class="filter-container">
-        <button class="filter-btn active" data-type="All">All</button>
+    <section class="filter-container">
+        <button class="filter-btn active" data-type="ALL">All</button>
         <button class="filter-btn" data-type="Grass">Grass</button>
         <button class="filter-btn" data-type="Fire">Fire</button>
         <button class="filter-btn" data-type="Water">Water</button>
@@ -27,57 +26,9 @@
     </section>
 
     <main id="app">
-        <div id="character-list" class="container"></div>
+        <div id="character-container" class="container"></div>
     </main>
 
-    <script type="module">
-        import characterData from './js/data.js';
-        
-        const listContainer = document.getElementById('character-list');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-
-        function renderCharacters(filter = "All") {
-            listContainer.innerHTML = "";
-
-            const filtered = filter === "All"
-                ? characterData
-                : characterData.filter(char => char.type === filter);
-
-            filtered.forEach(char => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.style.setProperty('--type-color', char.color);
-
-                card.innerHTML = `
-                    <div class="type-badge">${char.type}</div>
-                    <h2>${char.name} ${char.gender}</h2>
-                    <p class="desc hidden">${char.description}</p>
-                    <div class="footer hidden">호감 대상: ${char.likes}</div>
-                `;
-
-                // 카드 클릭 시 상세 토글
-                card.addEventListener("click", () => {
-                    card.querySelectorAll(".hidden").forEach(el => {
-                        el.classList.toggle("hidden");
-                    });
-                });
-
-                listContainer.appendChild(card);
-            });
-        }
-
-        // 필터 버튼 이벤트
-        filterButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-
-                renderCharacters(btn.dataset.type);
-            });
-        });
-
-        // 초기 렌더
-        renderCharacters();
-    </script>
+    <script type="module" src="src/js/interaction.js"></script>
 </body>
 </html>
