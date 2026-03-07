@@ -2,7 +2,7 @@
 const characterData = [
   {
     id: 1,
-    type: "grass",
+    type: "Grass",
     name: "Haruna Susuki (鈴木 陽菜)",
     gender: "female",
     color: "green",
@@ -12,7 +12,7 @@ const characterData = [
 
   {
     id: 2,
-    type: "fire",
+    type: "Fire",
     name: "Hanabi Homura (炎 花火)",
     gender: "female",
     color: "red",
@@ -22,7 +22,7 @@ const characterData = [
 
   {
     id: 3,
-    type: "water",
+    type: "Water",
     name: "Rio Shimizu (清水 莉央)",
     gender: "female",
     color: "blue",
@@ -32,7 +32,7 @@ const characterData = [
 
   {
     id: 4,
-    type: "lightning",
+    type: "Lightning",
     name: "Raiden Ogura (小倉 雷電)",
     gender: "male",
     color: "yellow",
@@ -42,7 +42,7 @@ const characterData = [
 
   {
     id: 5,
-    type: "light",
+    type: "Psychic",
     name: "Akari Kurosaki (黒崎 明里)",
     gender: "female",
     color: "purple",
@@ -52,7 +52,7 @@ const characterData = [
 
   {
     id: 6,
-    type: "earth",
+    type: "Earth",
     name: "Taichi Iwakura (岩倉 大地)",
     gender: "male",
     color: "orange",
@@ -62,7 +62,7 @@ const characterData = [
 
   {
     id: 7,
-    type: "dark",
+    type: "Dark",
     name: "Takeru Yamato (大和 武)",
     gender: "male",
     color: "teal",
@@ -72,7 +72,7 @@ const characterData = [
 
   {
     id: 8,
-    type: "metal",
+    type: "Metal",
     name: "Hagane Kaneko (金子 鋼)",
     gender: "male",
     color: "gray",
@@ -82,7 +82,7 @@ const characterData = [
 
   {
     id: 9,
-    type: "dragon",
+    type: "Dragon",
     name: "Ryunosuke Onizuka (鬼塚 竜之介)",
     gender: "male",
     color: "olive",
@@ -92,7 +92,7 @@ const characterData = [
 
   {
     id: 10,
-    type: "wind",
+    type: "Wind",
     name: "Junko Hoshizora (星空 純子)",
     gender: "female",
     color: "aqua",
