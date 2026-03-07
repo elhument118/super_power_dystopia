@@ -2,11 +2,11 @@ import characterData from "./data.js";
 
 const container = document.getElementById("character-container");
 
-export function renderCharacters(filterType = "ALL") {
+export function renderCharacters(filterType = "All") {
   if (!container) return; // 컨테이너가 없으면 실행 방지
   container.innerHTML = "";
 
-  const filtered = filterType === "ALL"
+  const filtered = filterType === "All"
     ? characterData
     : characterData.filter((char) => char.type === filterType);
 
