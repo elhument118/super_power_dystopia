@@ -7,7 +7,7 @@ export async function renderCharacters(filterType = "All") {
   container.innerHTML = "<p style='text-align:center;opacity:0.5'>로딩 중...</p>";
 
   try {
-    const res = await fetch(`../character_list.php?type=${filterType}`);
+    const res = await fetch(`character_list.php?type=${filterType}`);
     const characters = await res.json();
 
     container.innerHTML = "";
@@ -23,8 +23,8 @@ export async function renderCharacters(filterType = "All") {
       card.style.setProperty("--type-color", char.color);
 
       const imgSrc = char.image
-        ? `../product/${char.image}`
-        : `../product/nopic.png`;
+        ? `product/${char.image}`
+        : `product/nopic.png`;
 
       card.innerHTML = `
         <div class="type-badge">${char.type}</div>
@@ -39,11 +39,3 @@ export async function renderCharacters(filterType = "All") {
           el.classList.toggle("hidden");
         });
       });
-
-      container.appendChild(card);
-    });
-
-  } catch (err) {
-    container.innerHTML = "<p style='color:red;text-align:center'>데이터 로드 실패: " + err.message + "</p>";
-  }
-}
