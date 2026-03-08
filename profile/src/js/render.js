@@ -3,7 +3,7 @@ import characterData from "./data.js";
 const container = document.getElementById("character-container");
 
 export function renderCharacters(filterType = "All") {
-  if (!container) return; // 컨테이너가 없으면 실행 방지
+  if (!container) return;
   container.innerHTML = "";
 
   const filtered = filterType === "All"
@@ -12,7 +12,7 @@ export function renderCharacters(filterType = "All") {
 
   filtered.forEach((char) => {
     const card = document.createElement("div");
-    card.className = "card"; // CSS 클래스와 일치
+    card.className = "card";
     card.style.setProperty('--type-color', char.color);
 
     card.innerHTML = `
@@ -22,8 +22,9 @@ export function renderCharacters(filterType = "All") {
       <div class="likes hidden"><strong>호감 대상:</strong> ${char.likes}</div>
     `;
 
+    // Fix: 중복 선택 제거
     card.addEventListener("click", () => {
-      card.querySelectorAll(".hidden, .description, .likes").forEach(el => {
+      card.querySelectorAll(".description, .likes").forEach(el => {
         el.classList.toggle("hidden");
       });
     });
