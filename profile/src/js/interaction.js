@@ -1,4 +1,3 @@
-// js/interaction.js
 import { renderCharacters } from "./render.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
+      // Fix: active 클래스 갱신
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
       const type = btn.dataset.type;
       renderCharacters(type);
     });
